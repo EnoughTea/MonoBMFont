@@ -1,6 +1,8 @@
 ﻿# Monogame BMFont support
 
-BMFont can be found here: http://www.angelcode.com/products/bmfont/
+Library for parsing and using BMFont fonts in .NET. BMFont can be found here: http://www.angelcode.com/products/bmfont/
+
+Usage example for MonoGame:
 
 	// Font loading, assuming 'assetName' is something like "Fonts\\Calibri_22_r.fnt":
     string fontTextureName = FontData.GetTextureNameForFont(assetName);
