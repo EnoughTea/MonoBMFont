@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics.Contracts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -20,10 +19,17 @@ namespace MonoBMFont {
         /// <param name="fontDesc">BMFont description.</param>
         /// <param name="spacing">Text spacing.</param>
         /// <param name="defaultCharacter">CSharacter optionally used for resolving unknown characters.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="texture"/> is <see langword="null"/>
+        /// -or- <paramref name="fontDesc"/> is <see langword="null"/></exception>
         public BMFont(Texture2D texture, FontData fontDesc, float spacing = 0,
             char? defaultCharacter = ' ') {
-            Contract.Requires(texture != null);
-            Contract.Requires(fontDesc != null);
+            if (texture == null) {
+                throw new ArgumentNullException(nameof(texture));
+            }
+
+            if (fontDesc == null) {
+                throw new ArgumentNullException(nameof(fontDesc));
+            }
 
             Init(texture, fontDesc, spacing, defaultCharacter);
         }
@@ -66,6 +72,7 @@ namespace MonoBMFont {
         /// <summary> Returns the width and height of a string. </summary>
         /// <param name="text">The text to measure.</param>
         /// <returns>The width and height, in pixels, of text, when it is rendered. </returns>
+        /// <exception cref="ArgumentNullException"><paramref name="text"/> is <see langword="null"/></exception>
         public Vector2 MeasureString(string text) {
             if (text == null) {
                 throw new ArgumentNullException(nameof(text));
@@ -77,8 +84,11 @@ namespace MonoBMFont {
             return ProcessChars(text, null, null);
         }
 
+        /// <exception cref="ArgumentNullException"><paramref name="text"/> is <see langword="null"/></exception>
         internal Vector2 ProcessChars(string text, EachChar eachChar, Action newLineBegins) {
-            Contract.Requires(text != null);
+            if (text == null) {
+                throw new ArgumentNullException(nameof(text));
+            }
 
             var currentX = 0;
             var currentY = 0;
@@ -132,8 +142,13 @@ namespace MonoBMFont {
         }
 
         private void Init(Texture2D texture, FontData fontDesc, float spacing, char? defaultCharacter) {
-            Contract.Requires(texture != null);
-            Contract.Requires(fontDesc != null);
+            if (texture == null) {
+                throw new ArgumentNullException(nameof(texture));
+            }
+
+            if (fontDesc == null) {
+                throw new ArgumentNullException(nameof(fontDesc));
+            }
 
             var characterMap = new Dictionary<char, FontGlyph>(fontDesc.Chars.Count);
             foreach (var fontCharacter in fontDesc.Chars) {
