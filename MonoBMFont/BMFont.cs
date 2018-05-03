@@ -138,7 +138,7 @@ namespace MonoBMFont {
             }
 
             currentY += maxCharHeight;
-            return new Vector2(maxLineWidth, currentY);
+            return new Vector2(Math.Max(maxLineWidth, currentX), currentY);
         }
 
         private void Init(Texture2D texture, FontData fontDesc, float spacing, char? defaultCharacter) {
