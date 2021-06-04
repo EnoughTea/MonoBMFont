@@ -1,5 +1,7 @@
 ﻿# Monogame BMFont support
 
+***This project is quite old. Nowdays [monogameextended](https://www.monogameextended.net/) already provides BMFont loading, so use it instead***
+
 Library for parsing and using BMFont fonts in .NET. BMFont can be found here: http://www.angelcode.com/products/bmfont/
 
 Usage example for MonoGame:
